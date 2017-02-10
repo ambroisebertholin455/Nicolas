@@ -1,9 +1,13 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 
 public class DataBase {
@@ -17,21 +21,39 @@ public class DataBase {
 	
 	DataBase()
 	{
-
+		//Declaration des varialble pour le chargement et la lecture 
+		Properties pro = new Properties();
+		String driver, url, user, password;
+		
 		try{
-			System.out.println("Ouverture d'une session");
-			Class.forName("com.mysql.jdbc.Driver");
-			
-			String url = "jdbc:mysql://127.0.0.1/inscription?user=root&password=";
-			con = DriverManager.getConnection(url,"root","");			
-			state = con.createStatement();
-			System.out.println("Connection: OK");
-		}catch(ClassNotFoundException cl){
-			System.out.println("Erreur class non retrouve: "+ cl.getMessage());
-		}
-		catch(SQLException sq){
-			System.out.println("Erreur sql: "+sq.getMessage());
-		}
+				
+			    FileInputStream in = new FileInputStream("test/db.properties");
+				pro.load(in);
+				in.close();				
+				driver = pro.getProperty("jdbc.driver");
+				if(driver != null)
+					Class.forName(driver);
+				url = pro.getProperty("jdbc.url");
+				user = pro.getProperty("jdbc.username");
+				password = pro.getProperty("jdbc.password");				
+				System.out.println("Ouverture d'une session");				
+				
+				con = DriverManager.getConnection(url, user, password);			
+				state = con.createStatement();
+				System.out.println("Connection: OK");
+		
+			}catch(FileNotFoundException e){
+				e.printStackTrace();
+			}
+			catch(IOException e){
+				e.printStackTrace();
+			}
+			catch(ClassNotFoundException cl){
+				System.out.println("Erreur class non retrouve: "+ cl.getMessage());
+			}
+			catch(SQLException sq){
+				System.out.println("Erreur sql: "+sq.getMessage());
+			}
 	}
 	
 	public static DataBase getInstance(){

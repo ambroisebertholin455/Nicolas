@@ -17,23 +17,25 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 public class Formulaire extends JInternalFrame implements ActionListener{
 	
-  private JButton btsave,btnew,btlist;
-  private JLabel nom, releve,leLabelImage,etabliAP,etabliBP,etabliCP,etabliAS,etabliBS,etabliCS,etabliAU,etabliBU,etabliCU,
-  ensPrimairedebut,ensPrimairefin,ensSecondairedebut,ensSecondairefin,ensUniversitairedebut,ensUniversitairefin,imagelb,lettre,dateNaissance,photDi,releveB, photoC,photoAct,certificatB, photocopie, attes, prenom,NoDordre,discipline,lieu,statut,telephone,grou,refer,Adresse_utilisateur,nif, dateInscription,refefe;
-  private ImageIcon IconePhoto;
-  private JTextField txNom,txLieu,txPaysreference, txDordre,txInscription,txtel,txrefer,txprenom,txnif,txAdresse,txNaissance,
-  txensPrimairedebut,txensPrimairefin,txensSecondairedebut,txensSecondairefin,txensUniversitairedebut,txensUniversitairefin,
-  txEtabliAP,txEtabliBP,txEtabliCP,txEtabliAS,txEtabliBS,txEtabliCS,txEtabliAU,txEtabliBU,txEtabliCU;
-  private JComboBox cbstatut,reference,groupe,cbdiscipline,lettreCombo,photCombo,releveCombo,photoCombo,
-  certificatCombo,actCombo,attesCombo,phoCombo,releCombo; 
-  private JButton boutOk,boutAnn;
-  private JPanel panel, panel2, panBout,panE;
-  private ImageIcon lImage ;
-  private Connexion con;
-  private Statement st,st2;
-  private ResultSet rs,rs2;
+    	  private DataBase data = new DataBase(); 
+          private JButton btsave,btnew,btlist;
+		  private JLabel nom, releve,leLabelImage,etabliAP,etabliBP,etabliCP,etabliAS,etabliBS,etabliCS,etabliAU,etabliBU,etabliCU,
+		  ensPrimairedebut,ensPrimairefin,ensSecondairedebut,ensSecondairefin,ensUniversitairedebut,ensUniversitairefin,imagelb,lettre,dateNaissance,photDi,releveB, photoC,photoAct,certificatB, photocopie, attes, prenom,NoDordre,discipline,lieu,statut,telephone,grou,refer,Adresse_utilisateur,nif, dateInscription,refefe;
+		  private ImageIcon IconePhoto;
+		  private JTextField txNom,txLieu,txPaysreference, txDordre,txInscription,txtel,txrefer,txprenom,txnif,txAdresse,txNaissance,
+		  txensPrimairedebut,txensPrimairefin,txensSecondairedebut,txensSecondairefin,txensUniversitairedebut,txensUniversitairefin,
+		  txEtabliAP,txEtabliBP,txEtabliCP,txEtabliAS,txEtabliBS,txEtabliCS,txEtabliAU,txEtabliBU,txEtabliCU;
+		  private JComboBox cbstatut,reference,groupe,cbdiscipline,lettreCombo,photCombo,releveCombo,photoCombo,
+		  certificatCombo,actCombo,attesCombo,phoCombo,releCombo; 
+		  private JButton boutOk,boutAnn;
+		  private JPanel panel, panel2, panBout,panE;
+		  private ImageIcon lImage ;
+		  private Connexion con;
+		  private Statement st,st2;
+		  private ResultSet rs,rs2;
 
     
   public Formulaire() {
@@ -57,7 +59,7 @@ public class Formulaire extends JInternalFrame implements ActionListener{
       nom=new JLabel(" Nom");
       photoC=new JLabel(" Photocopie du certificat");
       attes=new JLabel("Attestation de l'universite sortante");
-      prenom= new JLabel("Prénom");
+      prenom= new JLabel("Prï¿½nom");
       statut= new JLabel(" Statut Matrimonial");
       photocopie= new JLabel("Photocopiede l'acte de naissance");
       ensPrimairedebut=new JLabel("Date du debut d'enseignement Primaire");
@@ -132,7 +134,7 @@ public class Formulaire extends JInternalFrame implements ActionListener{
       
                 //Combobox
        cbstatut= new JComboBox();
-        String sexe[]={"Celibataire","Marie(e)","Divorce(e)"};
+        String sexe[]={"Celibat","Marie(e)","Divorce(e)"};
        cbstatut=new JComboBox(sexe);
         
           cbdiscipline= new JComboBox();
@@ -145,39 +147,39 @@ public class Formulaire extends JInternalFrame implements ActionListener{
     
     lettreCombo= new JComboBox();
     String lette[]={"Oui","Non"};
-   lettreCombo=new JComboBox(lette);
+    lettreCombo=new JComboBox(lette);
     
     releveCombo= new JComboBox();
     String rel[]={"Oui","Non"};
-   releveCombo=new JComboBox(rel);
+     releveCombo=new JComboBox(rel);
    
-   photoCombo= new JComboBox();
-   String pho[]={"Oui","Non"};
-  photoCombo=new JComboBox(pho);
+     photoCombo= new JComboBox();
+     String pho[]={"Oui","Non"};
+   	 photoCombo=new JComboBox(pho);
    
-  attesCombo= new JComboBox();
-  String cert[]={"Oui","Non"};
- attesCombo=new JComboBox(cert);
- 
- phoCombo= new JComboBox();
- String ph[]={"Oui","Non"};
-phoCombo=new JComboBox(ph);
- 
-releCombo= new JComboBox();
-String rele[]={"Oui","Non"};
-releCombo=new JComboBox(rele);
-
-actCombo= new JComboBox();
-String ac[]={"Oui","Non"};
-actCombo=new JComboBox(ac);
-
-certificatCombo= new JComboBox();
-String cer[]={"Oui","Non"};
-certificatCombo=new JComboBox(cer);
-
-photCombo= new JComboBox();
-String phot[]={"Oui","Non"};
-photCombo=new JComboBox(phot);
+	  attesCombo= new JComboBox();
+	  String cert[]={"Oui","Non"};
+	 attesCombo=new JComboBox(cert);
+	 
+	 phoCombo= new JComboBox();
+	 String ph[]={"Oui","Non"};
+	phoCombo=new JComboBox(ph);
+	 
+	releCombo= new JComboBox();
+	String rele[]={"Oui","Non"};
+	releCombo=new JComboBox(rele);
+	
+	actCombo= new JComboBox();
+	String ac[]={"Oui","Non"};
+	actCombo=new JComboBox(ac);
+	
+	certificatCombo= new JComboBox();
+	String cer[]={"Oui","Non"};
+	certificatCombo=new JComboBox(cer);
+	
+	photCombo= new JComboBox();
+	String phot[]={"Oui","Non"};
+	photCombo=new JComboBox(phot);
  
   
      
@@ -194,120 +196,120 @@ photCombo=new JComboBox(phot);
       
       
       
+		     
+	   panel.add(nom);
+	   panel.add(txNom);
+	   panel.add(prenom);
+	   panel.add(txprenom);
+	   panel.add(statut);
+	   panel.add(cbstatut);
+	   panel.add(lieu);
+	   panel.add(txLieu);
+	   panel.add(Adresse_utilisateur);
+	   panel.add(txAdresse);
+	   panel.add(dateNaissance);
+	   panel.add(txNaissance);
+		     
+	    panel.add(nif);
+	    panel.add(txnif);
+	      
+	    panel.add(dateInscription);
+	    panel.add(txInscription);
+			  
+	       panel.add(NoDordre);
+	       panel.add(txDordre);
+	       panel.add(discipline);
+	       panel.add(cbdiscipline);
+	       
+	       panel.add(grou);
+	       panel.add(groupe);
+	       panel.add(refefe);
+	       panel.add(reference);
+	      
+	       
+	      panel.add(refer);
+	      panel.add(txPaysreference );
+	      
+	       panel.add(telephone);
+	       panel.add(txtel);
+	       
+	     
+	     panel.add(lettre);
+	     panel.add(lettreCombo);
+	     panel.add(releve);
+	     panel.add(releveCombo);
+	     panel.add(photocopie);
+	     panel.add(photoCombo);
+	     panel.add(attes);
+	     panel.add(attesCombo);
+	     panel.add(photoC);
+	     panel.add(phoCombo);
+	     panel.add(releveB);
+	     panel.add(releCombo);
+	     panel.add(photoAct);
+	     panel.add(actCombo);
+	     panel.add(certificatB);
+	     panel.add(certificatCombo);
+	     panel.add(photDi);
+	     panel.add(photCombo);
+	     panel.add(ensPrimairedebut);
+	     panel.add(txensPrimairedebut);
+	     panel.add(ensPrimairefin);
+	     panel.add(txensPrimairefin);
+	     panel.add(etabliAP);
+	     panel.add(txEtabliAP);
+	     panel.add(etabliBP);
+	     panel.add(txEtabliBP);
+	     panel.add(etabliCP);
+	     panel.add(txEtabliCP);
+	    
+    
+	    
+	    panel.add(ensSecondairedebut);
+	    panel.add(txensSecondairedebut);
+	    panel.add(ensSecondairefin);
+	    panel.add(txensSecondairefin);
+	    panel.add(etabliAS);
+	    panel.add(txEtabliAS);
+	    panel.add(etabliBS);
+	    panel.add(txEtabliBS);
+	    panel.add(etabliCS);
+	    panel.add(txEtabliCS);
+	    
+	    
+	    panel.add(ensUniversitairedebut);
+	    panel.add(txensUniversitairedebut);
+	    panel.add(ensUniversitairefin);
+	    panel.add(txensUniversitairefin);
+	    panel.add(etabliAU);
+	    panel.add(txEtabliAU);
+	    panel.add(etabliBU);
+	    panel.add(txEtabliBU);
+	    panel.add(etabliCU);
+	    panel.add(txEtabliCU);
+	    
+    
      
-      panel.add(nom);
-      panel.add(txNom);
-      panel.add(prenom);
-      panel.add(txprenom);
-      panel.add(statut);
-      panel.add(cbstatut);
-       panel.add(lieu);
-       panel.add(txLieu);
-     
-        panel.add(Adresse_utilisateur);
-       panel.add(txAdresse);
-       panel.add(dateNaissance);
-       panel.add(txtel);
-       panel.add(nif);
-       panel.add(txnif);
-      
-    panel.add(dateInscription);
-   panel.add(txNaissance);
-      panel.add(NoDordre);
-      panel.add(txDordre);
-      panel.add(discipline);
-       panel.add(cbdiscipline);
-       
-       panel.add(grou);
-       panel.add(groupe);
-       panel.add(refefe);
-       panel.add(reference);
-      
-       
-      panel.add(refer);
-      panel.add(txrefer);
-      
-       panel.add(telephone);
-       
-     panel.add(txPaysreference );
-     panel.add(lettre);
-     panel.add(lettreCombo);
-     panel.add(releve);
-     panel.add(releveCombo);
-     panel.add(photocopie);
-     panel.add(photoCombo);
-     panel.add(attes);
-     panel.add(attesCombo);
-     panel.add(photoC);
-     panel.add(phoCombo);
-    panel.add(releveB);
-    panel.add(releCombo);
-    panel.add(photoAct);
-    panel.add(actCombo);
-    panel.add(certificatB);
-    panel.add(certificatCombo);
-    panel.add(photDi);
-    panel.add(photCombo);
-    panel.add(ensPrimairedebut);
-    panel.add(txensPrimairedebut);
-    panel.add(ensPrimairefin);
-    panel.add(txensPrimairefin);
-    panel.add(etabliAP);
-    panel.add(txEtabliAP);
-    panel.add(etabliBP);
-    panel.add(txEtabliBP);
-    panel.add(etabliCP);
-    panel.add(txEtabliCP);
-    
-    
-    
-    panel.add(ensSecondairedebut);
-    panel.add(txensSecondairedebut);
-    panel.add(ensSecondairefin);
-    panel.add(txensSecondairefin);
-    panel.add(etabliAS);
-    panel.add(txEtabliAS);
-    panel.add(etabliBS);
-    panel.add(txEtabliBS);
-    panel.add(etabliCS);
-    panel.add(txEtabliCS);
-    
-    
-    panel.add(ensUniversitairedebut);
-    panel.add(txensUniversitairedebut);
-    panel.add(ensUniversitairefin);
-    panel.add(txensUniversitairefin);
-    panel.add(etabliAU);
-    panel.add(txEtabliAU);
-    panel.add(etabliBU);
-    panel.add(txEtabliBU);
-    panel.add(etabliCU);
-    panel.add(txEtabliCU);
-    
-    
-     
-     affich();
-                              
-                                          //ajout des conteneurs sur le conteneur principal
-                                      // panel.setBackground(Color.gray); 
-    panBout.setBackground(Color.black);                                                   
-  panel2.add(panE,BorderLayout.SOUTH);                                                     
-   panel2.add(panel,BorderLayout.WEST);
-//panel2.add(panBout,BorderLayout.WEST);
-//panel2.add(sc,BorderLayout.EAST);
-   panE.add(btsave);
-
- //panE.add(btlist);
- panE.add(btnew);
-getContentPane().add(panel2);  
+    	//  affich();
+ 
+	    panBout.setBackground(Color.black);                                                   
+	    panel2.add(panE,BorderLayout.SOUTH);                                                     
+	    panel2.add(panel,BorderLayout.WEST);
+	    //panel2.add(panBout,BorderLayout.WEST);
+	    //panel2.add(sc,BorderLayout.EAST);
+	    panE.add(btsave);
+	
+	    //panE.add(btlist);
+	    panE.add(btnew);
+	    getContentPane().add(panel2);  
 
        setClosable(true);
-  setResizable(true);
-  setIconifiable(true);
-  setMaximizable(true);
-  btsave.addActionListener(this);
-  btnew.addActionListener(this);
-  btlist.addActionListener(this);
+	  setResizable(true);
+	  setIconifiable(true);
+	  setMaximizable(true);
+	  btsave.addActionListener(this);
+	  btnew.addActionListener(this);
+	  btlist.addActionListener(this);
   
     }
   
@@ -322,44 +324,74 @@ getContentPane().add(panel2);
 	   
   }
     
-public void actionPerformed(ActionEvent event){
-if(event.getSource()==btnew )
-nettoyer();
-if(event.getSource()==btsave )
-enregistrer();
-if(event.getSource()==btlist)
-new Enregistrement_Utilisateur();
-}
+  public void actionPerformed(ActionEvent event){
+		if(event.getSource()==btnew )
+		nettoyer();
+		if(event.getSource()==btsave )
+		enregistrer();
+		if(event.getSource()==btlist)
+		new Enregistrement_Utilisateur();
+  }
    
    public void enregistrer(){
-	   try{
-	       Connexion con=new Connexion();
-	      st=con.getStatement();
-	   String req="INSERT INTO inscription (NOM,PRENOM,DATE_NAISSANCE,LIEU_NAISSANCE,NIF_CIN,DATE_INSCRIPTION,NO_ORDRE_BACC,STATUT_MATRIMONIAL,ADRESSE,TELEPHONE,REFERENCE_ETRANGE,PAYS,DISCIPLINE_CHOISIE,GROUPE) VALUES('"+txPaysreference.getText()+"','"+txLieu.getText()+"','"+txNom.getText()+"','"+txprenom.getText()+"','"+cbstatut.getSelectedItem()+"','"+reference.getSelectedItem()+"','"+groupe.getSelectedItem()+"','"+txNaissance.getText()+"','"+txrefer.getText()+"','"+txDordre.getText()+"','"+txInscription.getText()+"','"+cbdiscipline.getSelectedItem()+"','"+txAdresse.getText()+"','"+txnif.getText()+"')";
-	   st.executeUpdate(req);
-	   JOptionPane.showMessageDialog(null,"Succes!");
-	   nettoyer();
-	   }catch(SQLException e){
-	   JOptionPane.showMessageDialog(null,"Erreur sql!"+e);
-	   }
+//	   JOptionPane.showMessageDialog(null,"Succes!");	  
+//	   JOptionPane.showMessageDialog(null,"Erreur sql!");
+	   //data.inscription(note(txNom), note(txprenom), note(txNaissance),note(txLieu), note(txnif), note(txInscription), note(txDordre), text(cbstatut), note(txAdresse), note(txtel), text(reference) , note(txPaysreference), text(cbdiscipline), text(groupe));
+       //data.dossier(text(lettreCombo), text(releveCombo),  ,releve(attesCombo));	 
+	  // data.piece();
+	   //data.primaire(note(txensPrimairedebut), note(txensPrimairefin), note(txEtabliAP), note(txEtabliBP), note(txEtabliCP));
+		//data.secondaire(note(txensSecondairedebut), note(txensSecondairefin), note(txEtabliAS), note(txEtabliBS), note(txEtabliCS));
+		//data.universitaire(note(txensUniversitairedebut), note(txensUniversitairefin), note(txEtabliAU), note(txEtabliBU), note(txEtabliCU));
+
+	   
 	   }
 
 public void nettoyer(){
-this.txrefer.setText("");
-   this.txNom.setText("");
-this.txPaysreference.setText("");
-this.txnif.setText("");
-this.txInscription.setText("");
-this.txDordre.setText("");
-   this.txtel.setText("");
-    this.txAdresse.setText("");
-    this.txprenom.setText("");
-  this.txLieu.setText("");
-  this.txNaissance.setText("");      
-      
+	
+	    this.txrefer.setText("");
+		this.txNom.setText("");
+		this.txPaysreference.setText("");
+		this.txnif.setText("");
+		this.txInscription.setText("");
+		this.txDordre.setText("");
+		this.txtel.setText("");
+		this.txAdresse.setText("");
+		this.txprenom.setText("");
+		this.txLieu.setText("");
+		this.txNaissance.setText("");
+		this.txEtabliAP.setText("");
+		this.txEtabliAS.setText("");
+		this.txEtabliAU.setText("");
+		this.txEtabliBP.setText("");
+		this.txEtabliBS.setText("");
+		this.txEtabliBU.setText("");
+		this.txEtabliCP.setText("");
+		this.txEtabliCS.setText("");
+		this.txEtabliCU.setText("");
+		this.txensPrimairedebut.setText("");
+		this.txensPrimairefin.setText("");
+		this.txensSecondairedebut.setText("");
+		this.txensSecondairefin.setText("");
+		this.txensUniversitairedebut.setText("");
+		this.txensUniversitairefin.setText(""); 
                     
 }
-
+	public String note(JTextField text)
+	{
+		String texte = text.getText().toString();
+		//String lo = text.toString();
+		System.out.println(texte);
+		return texte;
+	}
+	
+	public String text(JComboBox box)
+	{
+		String text=""+ box.getSelectedItem();
+		System.out.println(text);
+		
+		return text;
+		
+	}
 
 
 }
